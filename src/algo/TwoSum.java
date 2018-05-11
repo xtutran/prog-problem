@@ -36,6 +36,9 @@ public class TwoSum {
         return new int[]{-1, -1};
     }
 
+
+
+
     //binary search, assume: input is sorted O(nlogn) runtime O(1) space
     static int[] func3(int[] A, int target) {
         for (int i = 0; i < A.length; i++) {
@@ -82,6 +85,23 @@ public class TwoSum {
         }
 
         return -1;
+    }
+
+    // sorted input - O(n) running time O(1) space
+    static int[] func4(int[] A, int target) {
+        int start = 0;
+        int end = A.length - 1;
+        while (start <= end) {
+            int sum = A[start] + A[end];
+            if (sum == target) {
+                return new int[] {start, end};
+            } else if(sum > target) {
+                end--;
+            } else {
+                start++;
+            }
+        }
+        return new int[]{ -1, -1 };
     }
 
     // expected & actual must be sorted
@@ -137,6 +157,12 @@ public class TwoSum {
 
         output = func3(B, 21);
         assertEqual(new int[]{-1, -1}, output);
+
+        output = func4(B, 10);
+        assertEqual(new int[]{3, 4}, output);
+
+        output = func4(B, 12);
+        assertEqual(new int[]{1, 6}, output);
 
     }
 }
