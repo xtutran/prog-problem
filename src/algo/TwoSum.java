@@ -36,9 +36,6 @@ public class TwoSum {
         return new int[]{-1, -1};
     }
 
-
-
-
     //binary search, assume: input is sorted O(nlogn) runtime O(1) space
     static int[] func3(int[] A, int target) {
         for (int i = 0; i < A.length; i++) {
@@ -104,65 +101,44 @@ public class TwoSum {
         return new int[]{ -1, -1 };
     }
 
-    // expected & actual must be sorted
-    static void assertEqual(int[] expected, int[] actual) {
-        if (expected.length != actual.length) {
-            throw new AssertionError("Failed! Expected & actual have different size");
-        }
-
-        for (int i = 0; i < expected.length; i++) {
-            if (expected[i] != actual[i]) {
-                throw new AssertionError(String.format("Failed! expected: %d, but actual: %d", expected[i], actual[i]));
-            }
-        }
-        System.out.println("Passed!");
-    }
-
-    static void assertEquals(int expected, int actual) {
-        if (expected != actual) {
-            throw new AssertionError(String.format("Failed! expected: %d, but actual: %d", expected, actual));
-        }
-        System.out.println("Passed!");
-    }
-
     public static void main(String[] args) {
         int[] A = {1, 2, 4, 10, 5, 10};
 
         //1.
         int[] output = func1(A, 20);
-        assertEqual(new int[]{3, 5}, output);
+        Asserts.assertEquals(new int[]{3, 5}, output);
 
         //2.
         output = func2(A, 20);
-        assertEqual(new int[]{3, 5}, output);
+        Asserts.assertEquals(new int[]{3, 5}, output);
 
         output = func2(A, 21);
-        assertEqual(new int[]{-1, -1}, output);
+        Asserts.assertEquals(new int[]{-1, -1}, output);
 
         //3.
         //Binary Search
         int[] B = {1, 2, 4, 5, 5, 7, 10};
 
-        assertEquals(bSearch(B, 0, B.length - 1, 8), -1); //-1 not found
-        assertEquals(bSearch(B, 0, B.length - 1, 5), 3); //3 found
-        assertEquals(bSearch(B, 0, B.length - 1, 7), 5); //5 found
+        Asserts.assertEquals(bSearch(B, 0, B.length - 1, 8), -1); //-1 not found
+        Asserts.assertEquals(bSearch(B, 0, B.length - 1, 5), 3); //3 found
+        Asserts.assertEquals(bSearch(B, 0, B.length - 1, 7), 5); //5 found
 
-        assertEquals(bSearch2(B, 5, 8), -1); //-1 not found
-        assertEquals(bSearch2(B, 5, 4), 4); //4 found
-        assertEquals(bSearch2(B, 7, 0), 5); //5 found
+        Asserts.assertEquals(bSearch2(B, 5, 8), -1); //-1 not found
+        Asserts.assertEquals(bSearch2(B, 5, 4), 4); //4 found
+        Asserts.assertEquals(bSearch2(B, 7, 0), 5); //5 found
 
         //two sum
         output = func3(B, 10);
-        assertEqual(new int[]{3, 4}, output);
+        Asserts.assertEquals(new int[]{3, 4}, output);
 
         output = func3(B, 21);
-        assertEqual(new int[]{-1, -1}, output);
+        Asserts.assertEquals(new int[]{-1, -1}, output);
 
         output = func4(B, 10);
-        assertEqual(new int[]{3, 4}, output);
+        Asserts.assertEquals(new int[]{3, 4}, output);
 
         output = func4(B, 12);
-        assertEqual(new int[]{1, 6}, output);
+        Asserts.assertEquals(new int[]{1, 6}, output);
 
     }
 }
